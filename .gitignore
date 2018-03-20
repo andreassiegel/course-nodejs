@@ -6,3 +6,5 @@
 *.iml
 /.idea
 greetings.txt
+
+**/api-key.js
