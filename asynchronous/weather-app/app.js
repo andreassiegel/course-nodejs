@@ -22,3 +22,18 @@ geocode.geocodeAddress(argv.address, (errorMessage, results) => {
         console.log(JSON.stringify(results, undefined, 2));
     }
 });
+
+const apiKey = require('./geocode/api-key');
+const request = require('request');
+request({
+    url: `https://api.darksky.net/forecast/${apiKey.DARK_SKY_API_KEY}/51.0336232,13.7160051`,
+    json: true
+}, (error, response, body) => {
+    if (error) {
+        console.log('Unable to connect to connect to Forecast.io servers.');
+    } else if (response.statusCode !== 200) {
+        console.log('Unable to fetch weather.');
+    } else {
+        console.log(body.currently.temperature);
+    }
+});
